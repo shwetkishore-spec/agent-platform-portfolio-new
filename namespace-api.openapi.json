@@ -60,7 +60,7 @@
       },
       "delete": {
         "operationId": "deleteNamespace",
-        "summary": "Request deletion of a namespace and everything in it. Opens a pull request that a team owner must approve.",
+        "summary": "Delete",
         "parameters": [
           { "name": "name", "in": "path", "required": true, "description": "Namespace name.", "schema": { "type": "string" } }
         ],
