@@ -1,0 +1,17 @@
+name: Spec quality check
+
+# Runs on every pull request, and can also be started by hand from the Actions tab.
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  spec-quality:
+    name: spec-quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code from this pull request
+        uses: actions/checkout@v4
+
+      - name: Check every OpenAPI spec for agent readiness
+        run: node spec-check.js
