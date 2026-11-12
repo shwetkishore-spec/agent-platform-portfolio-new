@@ -1,0 +1,74 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Namespace Provisioning API",
+    "version": "1.0.0",
+    "description": "Self-service Kubernetes namespaces for teams and agents. Every change goes through policy checks and a reviewable pull request."
+  },
+  "paths": {
+    "/namespaces": {
+      "get": {
+        "operationId": "listNamespaces",
+        "summary": "List namespaces owned by a team, with their status and resource quota.",
+        "parameters": [
+          { "name": "team", "in": "query", "required": true, "description": "Owning team ID, for example payments-core.", "schema": { "type": "string" } },
+          { "name": "env", "in": "query", "description": "Environment to filter by.", "schema": { "type": "string", "enum": ["dev", "staging", "prod"] } }
+        ],
+        "responses": {
+          "200": { "description": "List of namespaces" },
+          "403": { "description": "Caller cannot view this team" }
+        }
+      },
+      "post": {
+        "operationId": "createNamespace",
+        "summary": "Request a new namespace. Runs policy checks and opens a pull request for approval; does not create the namespace directly.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "team", "env"],
+                "properties": {
+                  "name": { "type": "string", "description": "Namespace name. Lowercase letters, numbers and dashes." },
+                  "team": { "type": "string", "description": "Owning team ID." },
+                  "env": { "type": "string", "enum": ["dev", "staging", "prod"], "description": "Target environment." },
+                  "cpu": { "type": "string", "description": "CPU quota, for example 4 or 500m." },
+                  "memory": { "type": "string", "description": "Memory quota, for example 8Gi." }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": { "description": "Request accepted; pull request opened" },
+          "422": { "description": "Request violates policy" }
+        }
+      }
+    },
+    "/namespaces/{name}": {
+      "get": {
+        "operationId": "getNamespace",
+        "summary": "Get one namespace, including quota usage and the Argo CD sync status.",
+        "parameters": [
+          { "name": "name", "in": "path", "required": true, "description": "Namespace name.", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Namespace details" },
+          "404": { "description": "Namespace not found" }
+        }
+      },
+      "delete": {
+        "operationId": "deleteNamespace",
+        "summary": "Request deletion of a namespace and everything in it. Opens a pull request that a team owner must approve.",
+        "parameters": [
+          { "name": "name", "in": "path", "required": true, "description": "Namespace name.", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "202": { "description": "Deletion requested; pull request opened" },
+          "404": { "description": "Namespace not found" }
+        }
+      }
+    }
+  }
+}
