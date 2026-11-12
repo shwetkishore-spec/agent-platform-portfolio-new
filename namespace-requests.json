@@ -1,0 +1,37 @@
+{
+  "description": "Namespace requests waiting to be provisioned. Every change to this file is checked against policy before it can be merged.",
+  "requests": [
+    {
+      "name": "payments-core-dev",
+      "team": "payments-core",
+      "env": "dev",
+      "cpu": "4",
+      "memory": "8Gi",
+      "owner": "priya@example.com",
+      "costCenter": "CC-1042",
+      "requestedBy": "agent:provisioning-bot",
+      "ttlDays": 14
+    },
+    {
+      "name": "payments-core-staging",
+      "team": "payments-core",
+      "env": "staging",
+      "cpu": "8",
+      "memory": "16Gi",
+      "owner": "priya@example.com",
+      "costCenter": "CC-1042",
+      "requestedBy": "human:priya@example.com"
+    },
+    {
+      "name": "tax-engine-prod",
+      "team": "tax-engine",
+      "env": "prod",
+      "cpu": "16",
+      "memory": "64Gi",
+      "owner": "arjun@example.com",
+      "costCenter": "CC-2210",
+      "requestedBy": "agent:provisioning-bot",
+      "approvedBy": "arjun@example.com"
+    }
+  ]
+}
