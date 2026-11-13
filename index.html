@@ -114,6 +114,17 @@
         </div>
       </div>
 
+      <div class="card">
+        <span class="status live">Live</span>
+        <h3>Policy check on infrastructure changes</h3>
+        <p>Namespace requests from people or agents are checked against six rules: naming, ownership, environment, quota, expiry, and human approval for prod. No one can change main without a pull request that passes every check.</p>
+        <div class="tags"><span class="tag">Policy as code</span><span class="tag">GitHub Actions</span><span class="tag">Branch protection</span></div>
+        <div class="links">
+          <a href="https://github.com/shwetkishore-spec/agent-platform-portfolio-new/actions">See check runs →</a>
+          <a href="https://github.com/shwetkishore-spec/agent-platform-portfolio-new/blob/main/policy-check.js">Code</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -121,13 +132,6 @@
     <h2>Coming next</h2>
     <p class="sub">Each prototype also puts a different GitHub workflow to work.</p>
     <div class="grid">
-
-      <div class="card planned">
-        <span class="status next">Planned</span>
-        <h3>Policy check on infrastructure changes</h3>
-        <p>Infrastructure changes are checked against policy before anyone reviews them, and main stays protected.</p>
-        <div class="tags"><span class="tag">GitHub Actions</span><span class="tag">Branch protection</span></div>
-      </div>
 
       <div class="card planned">
         <span class="status next">Planned</span>
@@ -154,7 +158,7 @@
         <li><b>Describe:</b> turn existing APIs into tools agents can call (converter).</li>
         <li><b>Assess:</b> measure which services are ready for agents and what's missing (dashboard).</li>
         <li><b>Act:</b> let agents request infrastructure through reviewable, policy-checked changes (namespace flow).</li>
-        <li><b>Enforce:</b> make spec quality (live) and policy checks (coming next) automatic on every change.</li>
+        <li><b>Enforce:</b> make spec quality and infrastructure policy checks automatic and required on every change.</li>
         <li><b>Run the program:</b> track the rollout and report it to leadership (coming next).</li>
       </ol>
     </div>
