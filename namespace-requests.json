@@ -5,7 +5,7 @@
       "name": "payments-core-dev",
       "team": "payments-core",
       "env": "dev",
-      "cpu": "4",
+      "cpu": "32",
       "memory": "8Gi",
       "owner": "priya@example.com",
       "costCenter": "CC-1042",
@@ -31,7 +31,7 @@
       "owner": "arjun@example.com",
       "costCenter": "CC-2210",
       "requestedBy": "agent:provisioning-bot",
-      "approvedBy": "arjun@example.com"
+      "approvedBy": ""
     }
   ]
 }
